@@ -1,3 +1,5 @@
+#pragma once
+
 /* 
  * Stack.h
  *
@@ -7,7 +9,7 @@
  * Author:
  * Date:
  */
- 
+
 class Stack {
 
     private:
@@ -27,6 +29,8 @@ class Stack {
         //                   operations at the list's tail.
         StackNode * head;
         StackNode * tail;
+
+        int elementCount;
 
     public:
 
@@ -60,6 +64,10 @@ class Stack {
         // Description:  
         // Postcondition:  
         bool isEmpty() const;
+
+        // Description:
+        // Postcondition:
+        void printStack();
 };
 
 
