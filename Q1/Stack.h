@@ -6,8 +6,8 @@
  * Description: Implementation of an int sequence with push/pop ...
  * Class Invariant: ... in a LIFO order
  *
- * Author:
- * Date:
+ * Author: Jet Simon and Shadi Zoldjalali 
+ * Date: 2/11/2022
  */
 
 class Stack {
@@ -39,35 +39,35 @@ class Stack {
         Stack();
 
 
-        // Description:  
-        // Postcondition:  
+        // Description: Destructor
+        // Postcondition: All StackNode objects in Stack deleted
         ~Stack();
 
 
         // Description:  Insert element x to the top of the stack.
-        // Postcondition:  
+        // Postcondition:  StackNode with data x is appeneded to the tail of the stack. elementCount++
         void push(int x);
 
 
         // Description:  Remove and return element at the top of the stack.
-        // Precondition:  
-        // Postcondition:  
+        // Precondition: Stack has elements to pop, else returns -1
+        // Postcondition: Returns data from tail of stack, removes StackNode from stack
         int pop();
 
 
         // Description:  Return the topmost element of the stack.
-        // Precondition:  
-        // Postcondition:  
+        // Precondition: Stack has at least 1 element 
+        // Postcondition: Return element from top of stack (ie the tail)
         int peek() const;
 
 
-        // Description:  
-        // Postcondition:  
+        // Description: Check if stack is empty
+        // Postcondition: Returns true if elementCount == 0
         bool isEmpty() const;
 
-        // Description:
-        // Postcondition:
-        void printStack();
+        // Description: A debugging tool. Prints elements of a stack starting from the head
+        // Postcondition: Stack printed to console starting from head, seperated by spaces.
+        //void printStack(); //COMMENTED OUT FOR FINAL SUBMISSION TO AVOID BUGS
 };
 
 
