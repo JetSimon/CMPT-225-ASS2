@@ -45,13 +45,20 @@ Token Scanner::getnext()
         buf[0] = str->get();
     }
 
+    cout << "STR:" << str->peek() << " BUF[0]: " << buf[0] << " EOF: " << str->eof() << endl;
+
     // collapse whitespace
     while (isspace(buf[0]) || (buf[0] == 13) || (buf[0] == '\n'))
     {
         buf[0] = str->get();
         if (str->eof())
+        {
+            cout << "EOF in whitespace" << endl;
             break;
+        }
     }
+
+    
 
     // case 1: eof
     if (str->eof())
@@ -61,6 +68,8 @@ Token Scanner::getnext()
         cout << "EOF" << endl;
         return ret;
     }
+
+    cout << "falling to case 2" << endl;
 
     // case 2: numerical-   [0-9]+
     if (isdigit(buf[0]))
@@ -79,6 +88,8 @@ Token Scanner::getnext()
         cout << "NUMERICAL" << endl;
         return ret;
     }
+
+    cout << "FALLING TO CASE 3" << endl;
 
     // case 3: symbol
     ret.text = buf;

@@ -5,15 +5,21 @@ using namespace std;
 
 int main()
 {
-    Scanner S(cin);
+    ifstream myfile;
+    myfile.open ("samples/expn.1");
+    Scanner S(myfile);
     Token t, res;
     Stack<Token> numstack, opstack; // 2x Stacks of type Token
+
 
     t = S.getnext();
 
     // while T is not EOF or the operator stack is non empty
-    while (t.tt != eof || opstack.isEmpty() == false)
+    while (t.tt != eof || !opstack.isEmpty())
     {
+        cout << "tt: " << t.tt << endl;
+        cout << "NUM STACK: " << numstack.getStackString() << endl;
+        cout << "OP STACK: " << opstack.getStackString() << endl;
         cout << "t is " << t.text << endl;
         // if T is a number:
         if (t.tt == integer)
@@ -139,6 +145,6 @@ int main()
 
     // cout << endl;
     // // End pretty printer coding demo.
-
+    myfile.close();
     return 0;
 }
