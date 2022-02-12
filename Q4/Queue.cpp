@@ -9,6 +9,8 @@
  */
 
 #include "Queue.h"
+#include <iostream>
+using namespace std;
 
 // Description:  Constructor
 Queue::Queue() : elementCount(0), capacity(INITIAL_CAPACITY), frontindex(0), backindex(0)
@@ -35,7 +37,7 @@ void Queue::enqueue(int x)
     int *newelements = new int[capacity];
 
     // copy over elements
-    for (int i = 0; i < elementCount - 2; i++)
+    for (int i = 0; i < elementCount - 1; i++)
     {
         newelements[i] = elements[i];
     }
@@ -54,6 +56,8 @@ void Queue::enqueue(int x)
 void Queue::dequeue()
 {
     elementCount--;
+
+    //see if we capacity utilization is inefficicent
     if (capacity / 4 > elementCount)
     {
         if (capacity / 2 < INITIAL_CAPACITY)
@@ -61,6 +65,7 @@ void Queue::dequeue()
         else
             capacity /= 2;
     }
+    
     frontindex = (frontindex + 1) % capacity;
 }
 
