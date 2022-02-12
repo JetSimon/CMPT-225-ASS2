@@ -1,5 +1,3 @@
-
-
 // Description:  The usual fare.  Descriptions, invariants, precondition and postcondition are
 //        omitted because they are duplicated elsewhere, namely Question 1.
 template <class T>
