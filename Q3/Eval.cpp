@@ -1,6 +1,4 @@
-
-#include "Scanner.h"
-#include "Stack.h" // GENERIC STACK
+#include "Eval.h" // for operation function
 
 #include <iostream>
 using namespace std;
@@ -8,14 +6,13 @@ using namespace std;
 int main()
 {
     Scanner S(cin);
-    Token t;
-
+    Token t, res;
     Stack<Token> numstack, opstack; // 2x Stacks of type Token
 
     t = S.getnext();
 
     // while T is not EOF or the operator stack is non empty
-    while (t.tt != eof || opstack.isEmpty() == false)
+    while (t.tt != eof || !opstack.isEmpty() || t.tt == slashtok)
     {
         // if T is a number:
         if (t.tt == integer)
@@ -45,34 +42,58 @@ int main()
             else
             {
                 // pop the top two numbers and the top operator
-                int x = numstack.pop().val;
-                int y = numstack.pop().val;
-                Token c = opstack.pop();
-                // perform the operation
-                // Token res = y + x
+                // perform operation
+                res = calc(numstack, opstack);
                 // push the result to the number stack
-                // numstack.push(res);
+                numstack.push(res);
+                // pop left parantheses
+                opstack.pop();
             }
         }
         // else if T is +, - or EOF:
-        //     if the operator stack is nonempty and the top is one
-        //                                         of +, -, *, /:
-        //         pop the top two numbers and the top operator
-        //         perform the operation
-        //         push the result to the number stack
-        //     else:
-        //         push T to the operator stack; get the next token
-
+        else if (t.tt == pltok || t.tt == mitok || t.tt == eof)
+        {
+            // if the operator stack is nonempty and the top is one of +, -, *, /:
+            if (!opstack.isEmpty() && (opstack.peek().tt == pltok || opstack.peek().tt == mitok || opstack.peek().tt == slashtok))
+            {
+                // pop the top two numbers and the top operator
+                // perform operation
+                res = calc(numstack, opstack);
+                // push the result to the number stack
+                numstack.push(res);
+            }
+            // else:
+            else
+            {
+                // push T to the operator stack; get the next token
+                opstack.push(t);
+                t = S.getnext();
+            }
+        }
         // else if T is * or /:
-        //     if the operator stack is nonempty and the top is one of *, /:
-        //         pop the top two numbers and the top operator
-        //         perform the operation
-        //         push the result to the number stack
-        //     else:
-        //         push T to the operator stack; get the next token
+        else if (t.tt == asttok || t.tt == slashtok)
+        {
+            // if the operator stack is nonempty and the top is one of *, /:
+            if (!opstack.isEmpty() && (opstack.peek().tt == asttok || opstack.peek().tt == slashtok))
+            {
+                // pop the top two numbers and the top operator
+                // perform operation
+                res = calc(numstack, opstack);
+                // push the result to the number stack
+                numstack.push(res);
+            }
+            // else:
+            else
+            {
+                // push T to the operator stack; get the next token
+                opstack.push(t);
+                t = S.getnext();
+            }
+        }
     }
+    cout << numstack.pop().val << endl;
 
-    // Pretty printer coding demo.  Please remove before coding
+    // // Pretty printer coding demo.  Please remove before coding
     // while (t.tt != eof)
     // {
     //     if (t.tt == integer || t.tt == lptok || t.tt == rptok)
@@ -88,8 +109,8 @@ int main()
     //     t = S.getnext();
     // }
 
-    cout << endl;
-    // End pretty printer coding demo.
+    // cout << endl;
+    // // End pretty printer coding demo.
 
     return 0;
 }
