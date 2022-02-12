@@ -28,7 +28,7 @@ int main()
             if (t.tt == eof)
                 cout << "EOF\n";
             else
-                cout << t.text << endl;
+                cout << "not eof" << endl;
         }
         // else if T is a left parenthesis:
         else if (t.tt == lptok)

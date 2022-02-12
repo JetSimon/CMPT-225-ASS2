@@ -13,7 +13,7 @@ class Queue
 
 private:
     static unsigned const INITIAL_CAPACITY = 6; // Constant INITIAL_CAPACITY
-    int elements[INITIAL_CAPACITY];             // To do: replace this by int * elements -> Question 4.a)
+    int *elements;                              // To do: replace this by int * elements -> Question 4.a)
 
     unsigned elementCount; // Number of elements in the Queue
     unsigned capacity;     // Actual capacity of the data structure (number of cells in the array)
@@ -23,6 +23,9 @@ private:
 public:
     // Description:  Constructor
     Queue();
+
+    // Description:  Deconstructor
+    ~Queue();
 
     // Description:  Inserts element x at the back (O(1))
     void enqueue(int x);

@@ -13,12 +13,38 @@
 // Description:  Constructor
 Queue::Queue() : elementCount(0), capacity(INITIAL_CAPACITY), frontindex(0), backindex(0)
 {
+    elements = new int[capacity];
 }
 
-// Description:  Inserts element x at the back (O(1))
+// Description: Deconstructor
+Queue::~Queue()
+{
+    delete[] elements;
+}
+
+// Description:  Inserts element x at the back (O(n))
 void Queue::enqueue(int x)
 {
+    // add the element
     elementCount++;
+    // if capacity is full, double capacity
+    if (capacity < elementCount)
+        capacity *= 2;
+
+    // create new array
+    int *newelements = new int[capacity];
+
+    // copy over elements
+    for (int i = 0; i < elementCount - 2; i++)
+    {
+        newelements[i] = elements[i];
+    }
+
+    // delete elements and point to new elements
+    delete[] elements;
+    elements = newelements;
+
+    // add new element to the back of Queue
     elements[backindex] = x;
     backindex = (backindex + 1) % capacity;
 }
@@ -28,6 +54,13 @@ void Queue::enqueue(int x)
 void Queue::dequeue()
 {
     elementCount--;
+    if (capacity / 4 > elementCount)
+    {
+        if (capacity / 2 < INITIAL_CAPACITY)
+            capacity = INITIAL_CAPACITY;
+        else
+            capacity /= 2;
+    }
     frontindex = (frontindex + 1) % capacity;
 }
 
