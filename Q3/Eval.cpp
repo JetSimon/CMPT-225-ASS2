@@ -12,14 +12,23 @@ int main()
     t = S.getnext();
 
     // while T is not EOF or the operator stack is non empty
-    while (t.tt != eof || !opstack.isEmpty() || t.tt == slashtok)
+    while (t.tt != eof || opstack.isEmpty() == false)
     {
+        cout << "t is " << t.text << endl;
         // if T is a number:
         if (t.tt == integer)
         {
+            cout << "integer" << endl;
             // push T to the number stack; get the next token
             numstack.push(t);
+            cout << "pushed " << t.text << endl;
             t = S.getnext();
+            cout << "ran getnext" << endl;
+            cout << "t  IN INT is " << t.text << endl;
+            if (t.tt == eof)
+                cout << "EOF\n";
+            else
+                cout << t.text << endl;
         }
         // else if T is a left parenthesis:
         else if (t.tt == lptok)
@@ -56,18 +65,25 @@ int main()
             // if the operator stack is nonempty and the top is one of +, -, *, /:
             if (!opstack.isEmpty() && (opstack.peek().tt == pltok || opstack.peek().tt == mitok || opstack.peek().tt == slashtok))
             {
+                cout << "iter 1 " << endl;
                 // pop the top two numbers and the top operator
                 // perform operation
                 res = calc(numstack, opstack);
+                // cout << "res is " << res.text << endl;
                 // push the result to the number stack
                 numstack.push(res);
             }
             // else:
             else
             {
+                cout << "iter 2 " << endl;
+
                 // push T to the operator stack; get the next token
                 opstack.push(t);
                 t = S.getnext();
+
+                if (t.tt == eof)
+                    cout << "EOF\n";
             }
         }
         // else if T is * or /:
@@ -90,8 +106,20 @@ int main()
                 t = S.getnext();
             }
         }
+        // if (!numstack.isEmpty())
+        //     cout << "numstack is " << numstack.peek().text << endl;
+        // if (!opstack.isEmpty())
+        //     cout << "opstack is " << opstack.peek().text << endl;
     }
-    cout << numstack.pop().val << endl;
+    cout << "out" << endl;
+
+    while (!opstack.isEmpty())
+    {
+        res = calc(numstack, opstack);
+        numstack.push(res);
+    }
+
+    cout << numstack.peek().val << endl;
 
     // // Pretty printer coding demo.  Please remove before coding
     // while (t.tt != eof)

@@ -58,6 +58,7 @@ Token Scanner::getnext()
     {
         ret.tt = eof;
         ret.text = "";
+        cout << "EOF" << endl;
         return ret;
     }
 
@@ -75,6 +76,7 @@ Token Scanner::getnext()
         ret.val = stod(ret.text, NULL);
         if (isspace(buf[0]) || (buf[0] == 13) || (buf[0] == '\n'))
             buf[0] = 0;
+        cout << "NUMERICAL" << endl;
         return ret;
     }
 
@@ -115,5 +117,6 @@ Token Scanner::getnext()
         ret.tt = errtok;
         buf[0] = 0;
     }
+    cout << "SYMB" << endl;
     return ret;
 }
