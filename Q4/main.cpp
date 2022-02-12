@@ -1,36 +1,44 @@
-
 #include "Queue.h"
 #include <iostream>
 using namespace std;
 
-
-int main () {
+int main()
+{
     Queue Q;
+    Queue copy;
 
     // enqueue 1, 2, 3, 4, 5
-    for (int i = 1; i <= 5; i++) {
+    for (int i = 1; i <= 5; i++)
+    {
         Q.enqueue(i);
         cout << "enqueue " << i << endl;
     }
+    // copy = Q;
 
+    // while (!copy.isEmpty())
+    // {
+    //     cout << " " << copy.peek();
+    //     copy.dequeue();
+    // }
 
     // dequeue 2x elements
-    for (int i = 0; i < 2; i++) {
+    for (int i = 0; i < 2; i++)
+    {
         int y = Q.peek();
         Q.dequeue();
         cout << "peek " << y << endl;
     }
 
-
     // enqueue 6, 7, 8, 9, 10
-    for (int i = 6; i <= 10; i++) {
+    for (int i = 6; i <= 10; i++)
+    {
         Q.enqueue(i);
         cout << "enqueue " << i << endl;
     }
 
-
     // dequeue all elements
-    while (!Q.isEmpty()) {
+    while (!Q.isEmpty())
+    {
         int y = Q.peek();
         Q.dequeue();
         cout << "peek " << y << endl;
@@ -38,4 +46,3 @@ int main () {
 
     return 0;
 }
-
