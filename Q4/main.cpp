@@ -10,8 +10,8 @@ int main()
     // enqueue 1, 2, 3, 4, 5
     for (int i = 1; i <= 5; i++)
     {
-        Q.enqueue(i);
         cout << "enqueue " << i << endl;
+        Q.enqueue(i);
     }
     // copy = Q;
 
@@ -25,23 +25,26 @@ int main()
     for (int i = 0; i < 2; i++)
     {
         int y = Q.peek();
-        Q.dequeue();
         cout << "peek " << y << endl;
+
+        Q.dequeue();
     }
 
     // enqueue 6, 7, 8, 9, 10
     for (int i = 6; i <= 10; i++)
     {
-        Q.enqueue(i);
         cout << "enqueue " << i << endl;
+        Q.enqueue(i);
     }
 
     // dequeue all elements
     while (!Q.isEmpty())
     {
         int y = Q.peek();
-        Q.dequeue();
         cout << "peek " << y << endl;
+
+        // cout << "y is " << y << endl;
+        Q.dequeue();
     }
 
     return 0;
