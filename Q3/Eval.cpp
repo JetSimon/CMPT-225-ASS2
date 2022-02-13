@@ -1,4 +1,4 @@
-/* 
+/*
  * Eval.cpp
  *
  * Description: Solves an Infix operation by utilizing two stacks;
@@ -6,7 +6,7 @@
  *
  * Invariant: input is well-formed
  *            negative numbers cannot be inputted (use arithmetic ex: to use -1 do (2-3))
- *              
+ *
  * Author: Shadi Zoldjalali and Jet Simon
  * Date: 2/13/2022
  */
@@ -18,12 +18,9 @@ using namespace std;
 
 int main()
 {
-    ifstream myfile;
-    myfile.open ("samples/expn.1");
-    Scanner S(myfile);
+    Scanner S(cin);
     Token t, res;
     Stack<Token> numstack, opstack; // 2x Stacks of type Token
-
 
     t = S.getnext();
 

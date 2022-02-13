@@ -1,6 +1,3 @@
-using namespace std;
-#include <string> 
-
 // Description:  The usual fare.  Descriptions, invariants, precondition and postcondition are
 //        omitted because they are duplicated elsewhere, namely Question 1.
 template <class T>
@@ -23,13 +20,10 @@ public:
     T pop();
     T peek();
     bool isEmpty();
-    string getStackString();
 };
 
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
-
-
 
 template <class T>
 Stack<T>::Stack()
@@ -78,18 +72,4 @@ Stack<T>::~Stack()
         delete p;
         p = head;
     }
-}
-
-template <class T>
-string Stack<T>::getStackString()
-{
-    string output = "";
-    Node *current = head;
-    while(current != NULL)
-    {
-        output += (current->data.text) + " ";
-        current = current->next;
-    }
-
-    return output;
 }
