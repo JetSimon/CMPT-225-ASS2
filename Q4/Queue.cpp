@@ -4,7 +4,7 @@
  * Description: Implementation of an int sequence with enqueue/dequeue ...
  * Class Invariant: ... in FIFO order
  *
- * Author:
+ * Author: Shadi Zoldjalali and Jet Simon
  * Date:
  */
 
@@ -89,14 +89,36 @@ void Queue::dequeue()
             capacity = INITIAL_CAPACITY;
         else
             capacity /= 2;
-        cout << "CAP HALVED" << endl;
+        //cout << "CAP HALVED" << endl;
         // frontindex = 0;
+        // need to resize the array, make a new array and copy values
+        // create new array
+        int *newelements = new int[capacity];
+        int count = frontindex + 1;
+
+        // copy over elements
+        for (int i = 0; i < elementCount; i++)
+        {
+            // cout << "**count = " << count << "elementscount = " << elements[count] << "**\n\n";
+            newelements[i] = elements[count];
+            // cout << "\nnewelements[ " << i << " ] = " << elements[count] << "**\n";
+            count++;
+        }
+
+        // delete elements and point to new elements
+        delete[] elements;
+        elements = newelements;
+
+        // for (int i = 0; i < elementCount; i++)
+        // {
+        //     cout << "\nelements[ " << i << " ] = " << elements[i] << "**\n";
+        // }
     }
 
     frontindex = (frontindex + 1) % capacity;
     backindex--;
-    cout << "\nfront - elements " << frontindex << " = " << elements[frontindex] << "**\n\n";
-    cout << "\nBACK - elements " << backindex << " = " << elements[backindex] << "**\n\n";
+    // cout << "\nfront - elements " << frontindex << " = " << elements[frontindex] << "**\n\n";
+    // cout << "\nBACK - elements " << backindex << " = " << elements[backindex] << "**\n\n";
 
     // backindex--;
     //  cout << "\n**dequeue**\n";
