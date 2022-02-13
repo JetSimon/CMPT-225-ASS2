@@ -4,8 +4,8 @@
  * Description: Implementation of an int sequence with enqueue/dequeue ...
  * Class Invariant: ... in FIFO order
  *
- * Author:
- * Date:
+ * Author: Shadi Zoldjalali and Jet Simon
+ * Date: 2/13/2022
  */
 
 class Queue
