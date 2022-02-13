@@ -18,9 +18,12 @@ using namespace std;
 
 int main()
 {
-    Scanner S(cin);
+    ifstream myfile;
+    myfile.open ("samples/expn.1");
+    Scanner S(myfile);
     Token t, res;
     Stack<Token> numstack, opstack; // 2x Stacks of type Token
+
 
     t = S.getnext();
 
