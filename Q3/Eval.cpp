@@ -70,7 +70,6 @@ int main()
                 // pop the top two numbers and the top operator
                 // perform operation
                 res = calc(numstack, opstack);
-                // cout << "res is " << res.text << endl;
                 // push the result to the number stack
                 numstack.push(res);
             }
