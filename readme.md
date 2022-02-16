@@ -4,5 +4,5 @@
 
 - [X] Question 1 - JET 
 - [X] Question 2 - JET
-- [ ] Question 3
-- [ ] Question 4
+- [X] Question 3 - SHADI
+- [X] Question 4 - SHADI
