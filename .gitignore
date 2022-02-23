@@ -1,3 +1,10 @@
 
 .vscode/settings.json
 .DS_Store
+
+*
+!.gitignore
+!**/*.cpp
+!**/*.h
+!**/*.md
+*
